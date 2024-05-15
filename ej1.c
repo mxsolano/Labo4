@@ -12,6 +12,30 @@ int busqueda_lineal(int arreglo[], int tamanoArreglo, int numero) {
   return -1;
 }
 
+int binarySearch(int arreglo[], int inicio, int fin, int numero) {
+    while (inicio <= fin) {
+        int medio = inicio + (fin - inicio) / 2;
+
+        // Si el número está en la posición media
+        if (arreglo[medio] == numero)
+            return medio;
+
+        // Si el número es mayor, ignoramos la mitad izquierda
+        if (arreglo[medio] < numero)
+            inicio = medio + 1;
+
+        // Si el número es menor, ignoramos la mitad derecha
+        else
+            fin = medio - 1;
+    }
+    // Si el número no está en el arreglo
+    return -1;
+}
+
+
+
+
+
 
 
 
@@ -40,7 +64,14 @@ int main() {
     printf("Por búsqueda lineal: el número %d no está en el arreglo.\n", numeroUsuario);
   }
 
+  int posicionbinaria = binarySearch(arreglo, 0, tamanoArreglo - 1, numeroUsuario);
 
+      // Mostrar el resultado
+      if (posicionbinaria != -1) {
+          printf("Por búsqueda binaria: el número %d está en el arreglo en la posición %d.\n", numeroUsuario, posicionbinaria);
+      } else {
+          printf("Por búsqueda binaria: el número %d no está en el arreglo.\n", numeroUsuario);
+      }
 
 
   return 0;
