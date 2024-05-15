@@ -14,7 +14,19 @@ int encuentra_minimo(int A[], int tamano) {
     return minimo;
 }
 
+int encuentra_maximo(int A[], int tamano) {
+    int maximo = A[0]; // se asume que el primer elemento es 0
 
+    // iterando a partir de la posicion 1
+    for (int i = 1; i < tamano; i++) {
+        // si el elemento actual es mas pequeno que el elemento anterior ahora este es el minimo
+        if (A[i] > maximo) {
+            maximo = A[i];
+        }
+    }
+
+    return maximo;
+}
 
 
 
@@ -26,7 +38,8 @@ int main() {
     int minimo = encuentra_minimo(array, tamano);
     printf("El valor minimo del arreglo es: %d\n", minimo);    
 
-
+    int maximo = encuentra_maximo(array, tamano);
+    printf("El valor maximo del arreglo es: %d\n", maximo);
 
 
     return 0;
