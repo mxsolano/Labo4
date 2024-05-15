@@ -32,11 +32,25 @@ int binarySearch(int arreglo[], int inicio, int fin, int numero) {
     return -1;
 }
 
+int binarySearch_Recursiva(int arreglo[], int inicio, int fin, int numero) {
+    if (inicio <= fin) {
+        int medio = inicio + (fin - inicio) / 2;
 
+        // Si el número está en la posición media
+        if (arreglo[medio] == numero)
+            return medio;
 
+        // Si el número es mayor, buscar en la mitad derecha
+        if (arreglo[medio] < numero)
+            return binarySearch_Recursiva(arreglo, medio + 1, fin, numero);
 
+        // Si el número es menor, buscar en la mitad izquierda
+        return binarySearch_Recursiva(arreglo, inicio, medio - 1, numero);
+    }
 
-
+    // Si el número no está en el arreglo
+    return -1;
+}
 
 
 
@@ -73,6 +87,15 @@ int main() {
           printf("Por búsqueda binaria: el número %d no está en el arreglo.\n", numeroUsuario);
       }
 
+  // Verificar si el número está en el arreglo usando búsqueda binaria recursiva
+  int posicionrecursiva = binarySearch_Recursiva(arreglo, 0, tamanoArreglo - 1, numeroUsuario);
+  
+  // Mostrar el resultado
+  if (posicion != -1) {
+    printf("Por búsqueda recursiva: el número %d está en el arreglo en la posición %d.\n", numeroUsuario, posicionrecursiva);
+  } else {
+    printf("Por búsqueda recursiva: el número %d no está en el arreglo.\n", numeroUsuario);
+  }
 
   return 0;
 }
